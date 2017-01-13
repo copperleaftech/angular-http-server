@@ -19,5 +19,8 @@
   "preferGlobal": true,
   "bin": {
     "angular-http-server": "./angular-http-server.js"
+  },
+  "dependencies": {
+    "mime-types": "^2.1.13"
   }
 }
