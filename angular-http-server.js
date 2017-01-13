@@ -2,6 +2,7 @@
 
 var http = require("http");
 var fs = require("fs");
+var mime = require("mime-types");
 
 // function sendFile(fname) {}
 
@@ -22,7 +23,7 @@ var server = http.createServer(function (req, res) {
 
             console.log("Sending file: %s", possibleFilename);
             fileBuffer = fs.readFileSync(possibleFilename);
-            res.writeHead(200, { 'Content-Type': toMimeType(fileExtension) });
+            res.writeHead(200, { 'Content-Type': mime.lookup(fileExtension) });
             // if (fileExtension == "css") {
             // } else {
             //     res.writeHead(200, { 'Content-Type': 'application/x-font-eot' });
@@ -39,13 +40,5 @@ var server = http.createServer(function (req, res) {
     });
 });
 
-function toMimeType(ext) {
-    console.log(ext);
-    switch (ext) {
-        case "js": 
-            return "application/javascript";
-        default: 
-            return 'text/' + ext;
-    }
-}
+
 server.listen(4200, function () { return console.log("Server listening on 4200"); });
