@@ -23,11 +23,10 @@ var server = http.createServer(function (req, res) {
 
             console.log("Sending file: %s", possibleFilename);
             fileBuffer = fs.readFileSync(possibleFilename);
-            res.writeHead(200, { 'Content-Type': mime.lookup(fileExtension) });
-            // if (fileExtension == "css") {
-            // } else {
-            //     res.writeHead(200, { 'Content-Type': 'application/x-font-eot' });
-            // }
+            res.writeHead(200, { 
+                'Content-Type': mime.lookup(fileExtension),
+                'Cache-Control': 'public, max-age=432000'
+            });            
         }
         else {
             console.log("Route %s, replacing with index.html", possibleFilename);
