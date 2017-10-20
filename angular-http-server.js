@@ -29,7 +29,6 @@ var server = http.createServer(function (req, res) {
             });            
         }
         else {
-            console.log("Route %s, replacing with index.html", possibleFilename);
             fileBuffer = fs.readFileSync("index.html");
             res.writeHead(200, { 'Content-Type': 'text/html' });
         }
